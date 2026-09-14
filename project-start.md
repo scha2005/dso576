@@ -28,9 +28,9 @@ A career seeker using a university career center must decide which career path t
 
 | Assessment | Vision A | Vision B |
 |---|---|---|
-| Evidence found so far | [Summarize the strongest verified evidence and link its original source.] | [Summarize the strongest verified evidence and link its original source.] |
-| Core-data fit | [Strong, partial, or weak—and one sentence explaining why.] | [Strong, partial, or weak—and one sentence explaining why.] |
-| Biggest risk | [What could prevent this Vision from supporting a useful, defensible decision?] | [What could prevent this Vision from supporting a useful, defensible decision?] |
+| Evidence found so far |The Anthropic Economic Index dataset connects real-world Claude usage with O*NET tasks and occupations. Its occupation- and task-level measures can help career seekers compare how AI is currently used across different career paths, including whether AI tends to automate tasks or augment human work.| The Economic Index includes job-exposure and task-penetration data that can be used to construct a relative AI-exposure score for different occupations. Anthropic’s labor-market impact study also introduces an observed-exposure measure based on AI capabilities and real-world, work-related AI usage.|
+| Core-data fit | Partial — The core data can support comparisons of AI exposure and task-level change across occupations, but it does not include all the information needed for a career decision, such as personal interests, education costs, location, salary preferences, and complete long-term employment prospects.| Partial — The core data can support occupation comparisons, relative exposure estimates, and a transparent risk-ranking system. However, it cannot independently predict with certainty whether or when a specific occupation will be replaced, nor can it define the “best” occupation without additional criteria.|
+| Biggest risk |Users may interpret high AI exposure as evidence that an occupation will disappear, even though exposure may instead mean that AI will change or assist some tasks within the occupation. The results could also be incomplete if important personal and labor-market factors are excluded.| A predictive score or ranking may appear more certain than the underlying evidence supports. Results may also depend heavily on how “AI risk” and “best job” are defined, weighted, and communicated to users.|
 
 ## Core data source we confirmed we can access
 
