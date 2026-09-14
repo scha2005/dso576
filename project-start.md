@@ -4,7 +4,7 @@
 
 | Team name | GitHub repository |
 |---|---|
-| [Team name] | [Link to the team's private GitHub repository] |
+| PyForce | https://github.com/scha2005/dso576.git |
 
 ## Selected project area
 
@@ -12,7 +12,7 @@
 
 ## Why our team is interested in it
 
-[Write 2-3 sentences.]
+As AI is reshaping the workplace, our team is interested in which roles should incorporate AI into their workflow to improve efficiency. Also, we are interested in what AI-related skills are necessary for each different sector.
 
 ## Candidate Vision A
 
@@ -34,7 +34,7 @@ A career seeker using a university career center must decide which career path t
 
 ## Core data source we confirmed we can access
 
-[Source, original link, and what successfully opened.]
+Anthropic Economic Index, https://huggingface.co/datasets/Anthropic/EconomicIndex, It opened up a link to Anthropic’s analysis of AI impact on the US economy.
 
 ## Three questions we still need to resolve
 
