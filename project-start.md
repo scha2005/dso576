@@ -38,9 +38,9 @@ Anthropic Economic Index, https://huggingface.co/datasets/Anthropic/EconomicInde
 
 ## Three questions we still need to resolve
 
-1. [Question]
-2. [Question]
-3. [Question]
+1. How should we systematically map O*NET occupation codes in the Anthropic dataset to normalized salary and employment growth data from the BLS (Bureau of Labor Statistics) to evaluate true career viability alongside AI exposure?
+2. How can we mathematically distinguish between AI task automation (replacing human tasks) and AI task augmentation (enhancing productivity) within the dataset to avoid misleading users into thinking high AI exposure equals job loss?
+3. What auxiliary data sources or weighting methodologies should we implement to account for regional demand variations and non-technical job requirements such as soft skills or physical presence that AI usage logs cannot capture?
 
 ## Role-file progress
 
