@@ -16,7 +16,7 @@ For a guided review, open `cleaning_notebook.ipynb` with this folder as the work
 
 - Branch: `Allen`
 - Branch URL: <https://github.com/scha2005/dso576/tree/Allen>
-- Cleaning submission commit: pending final commit and push. The current branch head, `6d88b60720007a066dfd92fa61875703b8b2c7bc`, predates the cleaning work and should not be submitted as the cleaning commit.
+- Cleaning deliverables commit: [`435c6f8126107f77288363ae6d0d67204896ab6f`](https://github.com/scha2005/dso576/commit/435c6f8126107f77288363ae6d0d67204896ab6f)
 
 ## Scope and rules
 
