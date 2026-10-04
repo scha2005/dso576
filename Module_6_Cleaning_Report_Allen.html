@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module 6 Project Data Cleaning — Allen</title>
+  <style>
+    :root {
+      --ink: #152238;
+      --muted: #58667a;
+      --paper: #ffffff;
+      --soft: #f2f6f9;
+      --line: #d8e1e8;
+      --navy: #173f5f;
+      --blue: #2077a8;
+      --teal: #16817a;
+      --green: #26734d;
+      --green-bg: #e8f5ee;
+      --amber: #9b6207;
+      --amber-bg: #fff5db;
+      --red: #9c3d37;
+      --red-bg: #fff0ee;
+    }
+    * { box-sizing: border-box; }
+    html { font-size: 10.3pt; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+      line-height: 1.46;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    @page { size: Letter; margin: 0.63in 0.62in 0.62in; }
+    a { color: var(--blue); text-decoration: none; }
+    p { margin: 0 0 0.56rem; }
+    h1, h2, h3 { margin: 0; line-height: 1.12; }
+    h1 { font-size: 29pt; letter-spacing: -0.7px; }
+    h2 { color: var(--navy); font-size: 19pt; margin-bottom: 0.7rem; }
+    h3 { color: var(--navy); font-size: 12.2pt; margin-bottom: 0.28rem; }
+    ul { margin: 0.28rem 0 0.45rem 1.15rem; padding: 0; }
+    li { margin: 0.12rem 0; }
+    code, .mono {
+      font-family: "Cascadia Mono", Consolas, monospace;
+      font-size: 0.88em;
+      overflow-wrap: anywhere;
+    }
+    .page { min-height: 9.58in; position: relative; }
+    .new-page { break-before: page; }
+    .keep { break-inside: avoid; }
+    .eyebrow {
+      color: var(--teal);
+      font-size: 9pt;
+      font-weight: 750;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .rule { width: 68px; height: 5px; background: var(--teal); border-radius: 4px; margin: 1rem 0 1.1rem; }
+    .lead { color: #31445c; font-size: 13pt; max-width: 6.8in; }
+    .small { color: var(--muted); font-size: 8.8pt; }
+    .tiny { color: var(--muted); font-size: 7.8pt; }
+    .muted { color: var(--muted); }
+    .label { color: var(--muted); font-size: 8.2pt; font-weight: 700; letter-spacing: .45px; text-transform: uppercase; }
+    .cover {
+      display: flex;
+      flex-direction: column;
+      padding-top: 0.45in;
+    }
+    .cover-band {
+      position: absolute;
+      top: -0.63in;
+      right: -0.62in;
+      width: 2.2in;
+      height: 4.0in;
+      background: linear-gradient(145deg, var(--navy), var(--teal));
+      clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 74%);
+    }
+    .cover-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem 1.1rem;
+      margin: 1.4rem 0 1rem;
+      max-width: 6.7in;
+    }
+    .meta-cell { padding-top: 0.5rem; border-top: 1px solid var(--line); }
+    .meta-value { font-weight: 650; margin-top: 0.08rem; }
+    .vision {
+      margin-top: 1.1rem;
+      padding: 0.9rem 1.05rem;
+      border-left: 5px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      background: var(--soft);
+      max-width: 7.2in;
+    }
+    .status-note {
+      margin-top: auto;
+      padding: 0.75rem 0.9rem;
+      background: var(--amber-bg);
+      border: 1px solid #efd89b;
+      border-radius: 8px;
+      font-size: 8.8pt;
+      max-width: 7.2in;
+    }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 2px solid var(--navy);
+      padding-bottom: 0.45rem;
+      margin-bottom: 0.8rem;
+    }
+    .section-no { color: var(--teal); font-weight: 750; font-size: 9pt; letter-spacing: 1.2px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.62rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.55rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.45rem; }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.68rem 0.76rem;
+      background: #fff;
+      break-inside: avoid;
+    }
+    .card.soft { background: var(--soft); border-color: transparent; }
+    .metric { padding: 0.58rem 0.62rem; background: var(--soft); border-radius: 7px; }
+    .metric .number { color: var(--navy); font-size: 18pt; font-weight: 780; line-height: 1.05; }
+    .metric .caption { color: var(--muted); font-size: 8.1pt; margin-top: 0.18rem; }
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr 26px 1fr 26px 1fr;
+      align-items: center;
+      gap: 0.2rem;
+      margin: 0.7rem 0;
+    }
+    .flow-box { background: var(--soft); border-radius: 8px; padding: 0.68rem; text-align: center; }
+    .arrow { color: var(--teal); font-size: 19pt; text-align: center; }
+    table { width: 100%; border-collapse: collapse; font-size: 8.45pt; }
+    thead { display: table-header-group; }
+    th {
+      background: var(--navy);
+      color: #fff;
+      padding: 0.42rem 0.45rem;
+      text-align: left;
+      font-weight: 700;
+    }
+    td { border-bottom: 1px solid var(--line); padding: 0.38rem 0.45rem; vertical-align: top; }
+    tbody tr:nth-child(even) td { background: #f7f9fb; }
+    tr { break-inside: avoid; }
+    .decision-table td:nth-child(1) { width: 24%; font-weight: 650; color: var(--navy); }
+    .decision-table td:nth-child(2) { width: 32%; }
+    .decision-table td:nth-child(3) { width: 28%; }
+    .decision-table td:nth-child(4) { width: 16%; }
+    .chip {
+      display: inline-block;
+      border-radius: 99px;
+      padding: 0.11rem 0.46rem;
+      font-size: 7.7pt;
+      font-weight: 760;
+      letter-spacing: .35px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .done { color: var(--green); background: var(--green-bg); }
+    .na { color: var(--amber); background: var(--amber-bg); }
+    .pending { color: var(--red); background: var(--red-bg); }
+    .check-item {
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      gap: 0.5rem;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.62rem 0.7rem;
+      margin-bottom: 0.5rem;
+      break-inside: avoid;
+    }
+    .check-num {
+      width: 25px; height: 25px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+      background: var(--navy); color: #fff;
+      font-size: 8.4pt; font-weight: 750;
+    }
+    .check-title { color: var(--navy); font-weight: 750; margin-bottom: 0.16rem; }
+    .evidence { color: #34465b; font-size: 8.75pt; }
+    .hash { font-size: 7.3pt; word-break: break-all; }
+    .record {
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--teal);
+      border-radius: 7px;
+      padding: 0.65rem 0.75rem;
+      margin-bottom: 0.56rem;
+      break-inside: avoid;
+    }
+    .record-head { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 0.32rem; }
+    .record-title { color: var(--navy); font-weight: 750; }
+    .record-grid { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 0.5rem; }
+    .record-cell { background: var(--soft); border-radius: 5px; padding: 0.4rem 0.47rem; font-size: 8.25pt; }
+    .callout {
+      padding: 0.72rem 0.82rem;
+      border-radius: 8px;
+      background: #eaf5f5;
+      border: 1px solid #c3e2df;
+    }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-top: 1px solid var(--line);
+      padding-top: 0.22rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 7.2pt;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="page cover">
+    <div class="cover-band"></div>
+    <div class="eyebrow">DSO 576 · Module 6 · Individual Homework</div>
+    <h1>Project Data<br>Cleaning Report</h1>
+    <div class="rule"></div>
+    <p class="lead">AI in the Workforce: occupation exposure and task penetration data</p>
+
+    <div class="cover-meta">
+      <div class="meta-cell"><div class="label">Student</div><div class="meta-value">Allen · GitHub <span class="mono">aguan1099</span></div></div>
+      <div class="meta-cell"><div class="label">Team</div><div class="meta-value">PyForce</div></div>
+      <div class="meta-cell"><div class="label">Report date</div><div class="meta-value">October 4, 2026</div></div>
+      <div class="meta-cell"><div class="label">Source release</div><div class="meta-value">Anthropic, March 5, 2026</div></div>
+      <div class="meta-cell"><div class="label">Git branch</div><div class="meta-value mono">Allen</div></div>
+      <div class="meta-cell"><div class="label">Branch URL</div><div class="meta-value"><a href="https://github.com/scha2005/dso576/tree/Allen">github.com/scha2005/dso576/tree/Allen</a></div></div>
+    </div>
+
+    <div class="vision">
+      <div class="label">Project vision</div>
+      <p>Help a career seeker compare career paths by showing how much AI is currently observed across occupations and tasks, while making clear that exposure can reflect assistance or workflow change rather than certain job replacement.</p>
+      <div class="label" style="margin-top:.5rem">Business question</div>
+      <p style="margin-bottom:0">Which occupations have the highest observed AI exposure, and which work tasks show the greatest AI penetration? The primary comparison is <span class="mono">observed_exposure</span> by O*NET occupation; <span class="mono">penetration</span> by task is the supporting measure.</p>
+    </div>
+
+    <div class="status-note">
+      <strong>Submission metadata:</strong> the local branch is <span class="mono">Allen</span> and tracks <span class="mono">origin/Allen</span>. The cleaning files are currently uncommitted, so the submitted cleaning commit ID is <strong>pending</strong>. The existing branch head, <span class="mono">6d88b60720007a066dfd92fa61875703b8b2c7bc</span>, contains only the earlier project-start work and is not presented as the cleaning submission.
+    </div>
+    <div class="footer"><span>DSO 576 · Project Data Cleaning</span><span>Allen · PyForce</span></div>
+  </section>
+
+  <section class="page new-page">
+    <div class="section-head"><div><div class="section-no">01 · OVERVIEW</div><h2>What was cleaned</h2></div><div class="small">Full-dataset checks</div></div>
+
+    <div class="grid-4 keep">
+      <div class="metric"><div class="number">756</div><div class="caption">job rows retained</div></div>
+      <div class="metric"><div class="number">17,992</div><div class="caption">task rows retained</div></div>
+      <div class="metric"><div class="number">6</div><div class="caption">exact duplicate rows removed</div></div>
+      <div class="metric"><div class="number">5 / 5</div><div class="caption">record checks passed</div></div>
+    </div>
+
+    <div class="flow keep">
+      <div class="flow-box"><strong>Original CSVs</strong><br><span class="small">Preserved and hashed</span></div>
+      <div class="arrow">›</div>
+      <div class="flow-box"><strong>Validate + deduplicate</strong><br><span class="small">Stop on malformed data</span></div>
+      <div class="arrow">›</div>
+      <div class="flow-box"><strong>Audited outputs</strong><br><span class="small">Clean files, samples, evidence</span></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3><span class="mono">job_exposure.csv</span></h3>
+        <p>One source row is an occupation. <span class="mono">occ_code</span> uniquely identifies all 756 rows. Scores range from 0.0 to 0.7451. There are no missing values, malformed occupation codes, repeated codes, or exact duplicate rows.</p>
+        <p class="small"><strong>Cleaning result:</strong> all 756 records retained unchanged.</p>
+      </div>
+      <div class="card">
+        <h3><span class="mono">task_penetration.csv</span></h3>
+        <p>One cleaned row is a distinct, case-sensitive task description and its penetration score. Scores range from 0.0 to 1.0. Two exact row patterns each appeared four times; one copy of each was retained.</p>
+        <p class="small"><strong>Cleaning result:</strong> 17,998 → 17,992 records.</p>
+      </div>
+    </div>
+
+    <div class="card soft keep" style="margin-top:.62rem">
+      <h3>Source and version</h3>
+      <p>Anthropic Economic Index, <em>Labor market impacts of AI: A new measure and early evidence</em>, released March 5, 2026; accessed October 4, 2026. The local files were downloaded again at their official revisions and matched byte-for-byte.</p>
+      <p class="hash"><strong>job_exposure.csv</strong> · revision <span class="mono">7a1cc3c</span> · SHA-256 <span class="mono">4f0a3adf5feeb2ec5f5d02ab18cc5e851a2a4b8470bde84c0c9335017be12d68</span></p>
+      <p class="hash"><strong>task_penetration.csv</strong> · revision <span class="mono">01eb1d0</span> · SHA-256 <span class="mono">85bee872db1d55d3e9a7f4e89da5ae4a5d59aa8ec875d728fbf4b7d820984616</span></p>
+    </div>
+
+    <div class="callout keep" style="margin-top:.62rem">
+      <strong>Interpretation boundary.</strong> Observed exposure is evidence of AI capability and real-world use across work tasks. It is not a probability that a job will disappear, and the supplied task table does not distinguish automation from augmentation on its own.
+    </div>
+    <div class="footer"><span>DSO 576 · Project Data Cleaning</span><span>Overview</span></div>
+  </section>
+
+  <section class="page new-page">
+    <div class="section-head"><div><div class="section-no">02 · DECISION LOG</div><h2>Rules written before application</h2></div><div class="small">Rule · reason · check · result</div></div>
+    <table class="decision-table">
+      <thead><tr><th>Rule</th><th>Reason</th><th>Check</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>Preserve source files and record SHA-256 hashes.</td><td>Keep an auditable input and make reruns comparable.</td><td>Hash before processing, hash again afterward, and compare with official file revisions.</td><td><span class="chip done">Passed</span><br>Both unchanged and source-matched.</td></tr>
+        <tr><td>Require the documented schema.</td><td>A missing, extra, or reordered field could invalidate later checks.</td><td>Compare CSV headers with the expected columns and stop on malformed rows.</td><td><span class="chip done">Passed</span><br>0 schema failures.</td></tr>
+        <tr><td>Keep occupation codes as text matching <span class="mono">NN-NNNN</span>.</td><td>Identifiers are labels; parsing them as numbers can damage formatting.</td><td>Validate all 756 codes with a regular expression and test uniqueness.</td><td><span class="chip done">Passed</span><br>0 invalid or repeated codes.</td></tr>
+        <tr><td>Trim outer whitespace only.</td><td>Remove accidental padding without rewriting substantive text.</td><td>Compare each original field with its stripped value and audit every change.</td><td><span class="chip done">Passed</span><br>0 fields required trimming.</td></tr>
+        <tr><td>Parse scores as finite decimals in [0, 1].</td><td>The metrics are proportions; invalid or infinite values cannot support comparisons.</td><td>Stop on conversion failure or a value outside the allowed interval.</td><td><span class="chip done">Passed</span><br>0 failures; 0 out of range.</td></tr>
+        <tr><td>Keep zeros and original numeric precision.</td><td>Zero is a valid observed result, not missing data. Rounding could alter rankings.</td><td>Count zeros; write the original score strings after validation.</td><td><span class="chip done">Passed</span><br>411 job and 16,644 task zeros retained.</td></tr>
+        <tr><td>Keep one copy of each exact row.</td><td>The project analyzes distinct task descriptions; repeated identical rows would give those descriptions extra weight.</td><td>Count complete-row tuples, audit every removal, and reconcile rows and score sums.</td><td><span class="chip done">Applied</span><br>6 task rows removed.</td></tr>
+        <tr><td>Preserve case and punctuation.</td><td>No authoritative identifier shows that similar-looking descriptions are interchangeable.</td><td>Keep signatures case-sensitive and inspect the “Web” / “web” pair.</td><td><span class="chip done">Passed</span><br>Both variants retained.</td></tr>
+        <tr><td>Do not fill missing values; stop instead.</td><td>There is no defensible imputation rule for an occupation, task, or exposure score.</td><td>Count blank required fields before and after cleaning.</td><td><span class="chip done">Passed</span><br>0 missing values.</td></tr>
+        <tr><td>Keep the two tables separate.</td><td>The task file has no occupation code or other defensible join key.</td><td>Inspect schemas and avoid a text-based or many-to-many merge.</td><td><span class="chip na">N/A merge</span><br>No merge performed.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout keep" style="margin-top:.72rem">
+      <strong>Exception and sensitivity note.</strong> Deduplicating task descriptions is appropriate for a distinct-description analysis. If the repeated rows encode different O*NET task records whose identifiers were omitted, frequency-weighted analysis should use the original table. The cleaned data therefore must not be treated as an occupation-to-task map.
+    </div>
+    <div class="footer"><span>DSO 576 · Project Data Cleaning</span><span>Cleaning decision log</span></div>
+  </section>
+
+  <section class="page new-page">
+    <div class="section-head"><div><div class="section-no">03 · CHECKLIST</div><h2>Inspect and clean the data</h2></div><div class="small">Items 1–7</div></div>
+
+    <div class="check-item"><div class="check-num">1</div><div><div class="check-title">State the project vision and question</div><div class="evidence">Career seekers compare occupations using observed AI exposure and task penetration while avoiding the claim that exposure equals replacement. Business question: which occupations and tasks show the greatest observed AI involvement? Primary comparison: <span class="mono">observed_exposure</span> by <span class="mono">occ_code</span>; supporting metric: task <span class="mono">penetration</span>. Evidence: <span class="mono">project-start.md</span> and this report’s cover.</div></div><span class="chip done">Done</span></div>
+
+    <div class="check-item"><div class="check-num">2</div><div><div class="check-title">Define one row</div><div class="evidence"><span class="mono">job_exposure</span>: one occupation, uniquely identified by <span class="mono">occ_code</span> (756/756 unique). <span class="mono">task_penetration</span>: one cleaned, case-sensitive task description and score, uniquely identified by <span class="mono">task</span> after six redundant copies are removed. Evidence: <span class="mono">validation.json</span>.</div></div><span class="chip done">Done</span></div>
+
+    <div class="check-item"><div class="check-num">3</div><div><div class="check-title">Preserve the source</div><div class="evidence">Source: Anthropic Economic Index, March 5, 2026 labor-market-impact release; accessed October 4, 2026. Exact revisions and SHA-256 hashes appear in Section 1. Originals remain at project root and are loaded relative to <span class="mono">clean_data.py</span>. Hashes are verified after processing.</div></div><span class="chip done">Done</span></div>
+
+    <div class="check-item"><div class="check-num">4</div><div><div class="check-title">Inspect columns and types</div><div class="evidence">Occupation codes, titles, and task descriptions remain strings. Both score columns were validated by conversion to exact decimal values. Failed conversions: 0 in 756 job rows and 0 in 17,998 task rows. No type repair was needed; scores are written with their source precision.</div></div><span class="chip done">Done</span></div>
+
+    <div class="check-item"><div class="check-num">5</div><div><div class="check-title">Standardize text</div><div class="evidence">Rule: trim only outer whitespace. Changed fields: 0. Example before → after: <span class="mono">11-1031</span> → <span class="mono">11-1031</span> and <span class="mono">Legislators</span> → <span class="mono">Legislators</span>. Meaningful capitalization remains: the otherwise identical task descriptions ending in “Web pages.” and “web pages.” remain separate.</div></div><span class="chip done">Done</span></div>
+
+    <div class="check-item"><div class="check-num">6</div><div><div class="check-title">Investigate duplicates</div><div class="evidence">Jobs: 0 exact duplicate rows and 0 repeated occupation codes. Tasks: 6 excess exact rows across 2 repeated description groups (each occurred 4 times); 1 copy of each group retained. The six removals are listed individually in <span class="mono">cleaning_audit.csv</span>.</div></div><span class="chip done">Done</span></div>
+
+    <div class="check-item"><div class="check-num">7</div><div><div class="check-title">Handle missing data</div><div class="evidence">Before and after counts are 0 for every column: <span class="mono">occ_code</span>, <span class="mono">title</span>, <span class="mono">observed_exposure</span>, <span class="mono">task</span>, and <span class="mono">penetration</span>. No records were filled or removed for missingness. The script stops if a required value is blank.</div></div><span class="chip done">Done</span></div>
+    <div class="footer"><span>DSO 576 · Project Data Cleaning</span><span>Checklist 1–7</span></div>
+  </section>
+
+  <section class="page new-page">
+    <div class="section-head"><div><div class="section-no">03 · CHECKLIST</div><h2>Validate the results</h2></div><div class="small">Items 8–14</div></div>
+
+    <div class="check-item"><div class="check-num">8</div><div><div class="check-title">Check suspicious values</div><div class="evidence">There are no date fields. Scores were checked for failed conversion, non-finite values, and values outside [0, 1]: all counts were 0. Boundary and unusual values were retained as valid: 411 job scores and 16,644 task scores equal 0; one checked task equals 1.0; the maximum occupation score is 0.7451.</div></div><span class="chip done">Done</span></div>
+
+    <div class="check-item"><div class="check-num">9</div><div><div class="check-title">Verify merges</div><div class="evidence">No merge was attempted. <span class="mono">job_exposure.csv</span> has an occupation code, while <span class="mono">task_penetration.csv</span> has only task text and score. There is no shared key, so a claimed relationship or unmatched-key count would be misleading.</div></div><span class="chip na">Not applicable</span></div>
+
+    <div class="check-item"><div class="check-num">10</div><div><div class="check-title">Reconcile changes</div><div class="evidence">Jobs: 756 → 756; score sum 58.1944 → 58.1944. Tasks: 17,998 → 17,992 because six exact copies were removed; score sum 1201.2546 → 1196.8968. Difference: 4.3578 = 6 × 0.7263. No other row-count or score-sum change occurred.</div></div><span class="chip done">Done</span></div>
+
+    <div class="check-item"><div class="check-num">11</div><div><div class="check-title">Check calculations</div><div class="evidence">No missing values affect totals, averages, or denominators. All valid zeros remain in calculations. Clean means use n=756 occupations and n=17,992 distinct task descriptions: 0.0769767 and 0.0665238, respectively. A missing group key would stop the run rather than form a missing group.</div></div><span class="chip done">Done</span></div>
+
+    <div class="check-item"><div class="check-num">12</div><div><div class="check-title">Verify individual records</div><div class="evidence">Five expectations were written from source records and cleaning rules, then compared with output: zero boundary, maximum occupation exposure, 1.0 task boundary, and both four-copy capitalization variants. All five matched. Full evidence appears in Section 5 and <span class="mono">record_checks.json</span>.</div></div><span class="chip done">Done</span></div>
+
+    <div class="check-item"><div class="check-num">13</div><div><div class="check-title">Test reproducibility</div><div class="evidence">From the project folder, run <span class="mono">python clean_data.py</span> with Python 3.10+; no third-party packages are required. A fresh Python 3.14.7 process recreated all seven output files byte-for-byte. Output row counts, unique keys, and all record checks were independently asserted.</div></div><span class="chip done">Done</span></div>
+
+    <div class="check-item"><div class="check-num">14</div><div><div class="check-title">Document remaining limitations</div><div class="evidence">Task records lack occupation codes and task IDs; similar wording cannot be safely resolved; deduplication changes occurrence weighting; source metrics do not prove causation or job loss; and salary, growth, location, education, physical-presence, and automation-versus-augmentation variables are absent. These limits constrain career recommendations.</div></div><span class="chip done">Done</span></div>
+    <div class="footer"><span>DSO 576 · Project Data Cleaning</span><span>Checklist 8–14</span></div>
+  </section>
+
+  <section class="page new-page">
+    <div class="section-head"><div><div class="section-no">04 · RECONCILIATION</div><h2>Counts and important totals</h2></div><div class="small">Before ↔ after</div></div>
+    <table>
+      <thead><tr><th>Dataset / measure</th><th>Original</th><th>Cleaned</th><th>Difference</th><th>Explanation</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Job rows</strong></td><td>756</td><td>756</td><td>0</td><td>No duplicates, missing values, invalid codes, or invalid scores.</td></tr>
+        <tr><td>Job score sum</td><td>58.1944</td><td>58.1944</td><td>0.0000</td><td>All source scores retained.</td></tr>
+        <tr><td>Job score mean</td><td>0.0769767196</td><td>0.0769767196</td><td>0</td><td>Denominator remains 756.</td></tr>
+        <tr><td>Job score range / zeros</td><td>0.0–0.7451 / 411</td><td>0.0–0.7451 / 411</td><td>0</td><td>Valid boundary values retained.</td></tr>
+        <tr><td><strong>Task rows</strong></td><td>17,998</td><td>17,992</td><td>−6</td><td>Two exact rows each had three excess copies.</td></tr>
+        <tr><td>Task score sum</td><td>1201.2546</td><td>1196.8968</td><td>−4.3578</td><td>Six removed copies × 0.7263.</td></tr>
+        <tr><td>Task score mean</td><td>0.0667437826</td><td>0.0665238328</td><td>−0.0002199498</td><td>Exact duplicates no longer receive extra weight.</td></tr>
+        <tr><td>Task score range / zeros</td><td>0.0–1.0 / 16,644</td><td>0.0–1.0 / 16,644</td><td>0</td><td>Removed duplicate scores were nonzero.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="grid-2" style="margin-top:.75rem">
+      <div class="card soft">
+        <h3>Missingness</h3>
+        <p>Every source and cleaned column has zero blanks. Because missing values do not occur, no total or mean requires an adjusted denominator and no imputation uncertainty is introduced.</p>
+      </div>
+      <div class="card soft">
+        <h3>Numeric validity</h3>
+        <p>Every score converts to a finite decimal in the closed interval [0, 1]. There are zero failed conversions and zero out-of-range values in both datasets.</p>
+      </div>
+      <div class="card soft">
+        <h3>Text and identifiers</h3>
+        <p>There are zero whitespace changes. All 756 occupation codes match <span class="mono">NN-NNNN</span> and remain unique. Capitalization and punctuation remain source-faithful.</p>
+      </div>
+      <div class="card soft">
+        <h3>Sample selection</h3>
+        <p>Two 25-row samples provide the allowed 50 cleaned rows. They force in score boundaries, the job maximum, and both duplicate groups; remaining rows follow source order.</p>
+      </div>
+    </div>
+    <div class="callout keep" style="margin-top:.7rem">
+      <strong>Metric caution.</strong> Score sums appear here only to prove that the cleaning changes reconcile exactly. They are not estimates of total jobs, economic impact, or displacement risk.
+    </div>
+    <div class="footer"><span>DSO 576 · Project Data Cleaning</span><span>Reconciliation</span></div>
+  </section>
+
+  <section class="page new-page">
+    <div class="section-head"><div><div class="section-no">05 · RECORD CHECKS</div><h2>Five expected-versus-actual checks</h2></div><div class="small">Expectations set before output comparison</div></div>
+
+    <div class="record">
+      <div class="record-head"><div class="record-title">1 · Valid zero exposure</div><span class="chip done">Match</span></div>
+      <div class="record-grid">
+        <div class="record-cell"><span class="label">Original</span><br><span class="mono">11-1031 | Legislators | 0.0</span><br>Source count: 1</div>
+        <div class="record-cell"><span class="label">Expected</span><br>One unchanged row. Zero is valid and must not be treated as missing.</div>
+        <div class="record-cell"><span class="label">Actual</span><br><span class="mono">11-1031 | Legislators | 0.0</span><br>Clean count: 1</div>
+      </div>
+    </div>
+
+    <div class="record">
+      <div class="record-head"><div class="record-title">2 · Highest occupation exposure</div><span class="chip done">Match</span></div>
+      <div class="record-grid">
+        <div class="record-cell"><span class="label">Original</span><br><span class="mono">15-1251 | Computer Programmers | 0.7451</span><br>Source count: 1</div>
+        <div class="record-cell"><span class="label">Expected</span><br>One unchanged row. A high score remains within [0, 1] and is not an error.</div>
+        <div class="record-cell"><span class="label">Actual</span><br><span class="mono">15-1251 | Computer Programmers | 0.7451</span><br>Clean count: 1</div>
+      </div>
+    </div>
+
+    <div class="record">
+      <div class="record-head"><div class="record-title">3 · Upper task boundary</div><span class="chip done">Match</span></div>
+      <p class="small">Task: “Advise customers on use and care of merchandise.”</p>
+      <div class="record-grid">
+        <div class="record-cell"><span class="label">Original</span><br>Penetration <span class="mono">1.0</span>; source count 1.</div>
+        <div class="record-cell"><span class="label">Expected</span><br>One unchanged row. The closed interval allows 1.0.</div>
+        <div class="record-cell"><span class="label">Actual</span><br>Penetration <span class="mono">1.0</span>; clean count 1.</div>
+      </div>
+    </div>
+
+    <div class="record">
+      <div class="record-head"><div class="record-title">4 · Exact duplicate group, uppercase “Web”</div><span class="chip done">Match</span></div>
+      <p class="small">Task: “Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet Web pages.”</p>
+      <div class="record-grid">
+        <div class="record-cell"><span class="label">Original</span><br>Penetration <span class="mono">0.7263</span>; four identical rows.</div>
+        <div class="record-cell"><span class="label">Expected</span><br>Retain the first exact row; remove three redundant copies.</div>
+        <div class="record-cell"><span class="label">Actual</span><br>One row at <span class="mono">0.7263</span>; three audit entries.</div>
+      </div>
+    </div>
+
+    <div class="record">
+      <div class="record-head"><div class="record-title">5 · Case-sensitive counterpart, lowercase “web”</div><span class="chip done">Match</span></div>
+      <p class="small">Task: “Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet web pages.”</p>
+      <div class="record-grid">
+        <div class="record-cell"><span class="label">Original</span><br>Penetration <span class="mono">0.7263</span>; four identical rows.</div>
+        <div class="record-cell"><span class="label">Expected</span><br>Retain one lowercase row; keep it distinct from uppercase “Web.”</div>
+        <div class="record-cell"><span class="label">Actual</span><br>One lowercase row at <span class="mono">0.7263</span>; three audit entries.</div>
+      </div>
+    </div>
+    <div class="footer"><span>DSO 576 · Project Data Cleaning</span><span>Five record checks</span></div>
+  </section>
+
+  <section class="page new-page">
+    <div class="section-head"><div><div class="section-no">06 · CODEX CHECK</div><h2>How I checked one Codex suggestion</h2></div><div class="small">Independent expectation + reconciliation</div></div>
+
+    <div class="card keep">
+      <div class="label">Suggestion checked</div>
+      <h3 style="margin-top:.2rem">Remove only exact duplicate task rows and preserve the capitalization variants.</h3>
+      <p>Codex identified six redundant rows in <span class="mono">task_penetration.csv</span>. I did not accept the suggestion based on visual similarity alone. I defined the rule as equality across every CSV field, including case and punctuation.</p>
+    </div>
+
+    <div class="grid-3" style="margin-top:.7rem">
+      <div class="card soft"><div class="label">1 · Inspect source</div><p style="margin-top:.25rem">Separately loaded the raw CSV in PowerShell and grouped <span class="mono">(task, penetration)</span> case-sensitively. Exactly two groups occurred four times each; records 17,890–17,897 were then inspected directly.</p></div>
+      <div class="card soft"><div class="label">2 · Predict first</div><p style="margin-top:.25rem">Expected 17,992 rows; one uppercase and one lowercase record; six removals; score-sum decrease of <span class="mono">6 × 0.7263 = 4.3578</span>.</p></div>
+      <div class="card soft"><div class="label">3 · Compare output</div><p style="margin-top:.25rem">Checked the clean CSV, six audit entries, validation totals, and two record checks. Every expected value matched.</p></div>
+    </div>
+
+    <div class="callout keep" style="margin-top:.75rem">
+      <strong>Conclusion:</strong> the suggestion passed the defined check. It removes six exact copies while keeping the “Web” and “web” descriptions as two separate records. The remaining risk is semantic: the source lacks task IDs, so duplicate-looking rows could represent distinct upstream task records. That uncertainty is documented rather than hidden.
+    </div>
+
+    <div class="section-head" style="margin-top:1rem"><div><div class="section-no">07 · REPRODUCIBILITY</div><h2>Recreate the submitted results</h2></div></div>
+    <div class="card keep">
+      <ol style="margin:.05rem 0 .45rem 1.2rem;padding:0">
+        <li>Place the unchanged <span class="mono">job_exposure.csv</span> and <span class="mono">task_penetration.csv</span> next to <span class="mono">clean_data.py</span>.</li>
+        <li>Use Python 3.10 or newer. The script uses only the standard library.</li>
+        <li>From the project folder, run <span class="mono">python clean_data.py</span>.</li>
+        <li>Review <span class="mono">cleaned/validation.json</span>, <span class="mono">cleaned/cleaning_audit.csv</span>, and <span class="mono">cleaned/record_checks.json</span>.</li>
+      </ol>
+      <p class="small"><strong>Restart test:</strong> a new Python 3.14.7 process regenerated seven output files. Every file was byte-identical to the prior run; output row counts and key uniqueness were asserted; all five record checks passed.</p>
+    </div>
+
+    <div class="grid-2" style="margin-top:.65rem">
+      <div class="card soft"><h3>Expected clean outputs</h3><ul class="small"><li><span class="mono">job_exposure_clean.csv</span></li><li><span class="mono">task_penetration_clean.csv</span></li><li>two 25-row sample CSVs</li><li>audit CSV and two JSON evidence files</li></ul></div>
+      <div class="card soft"><h3>Dependency statement</h3><p class="small">No external packages are required to clean or validate the data. PDF rendering is separate from the cleaning pipeline and does not affect submitted CSV results.</p></div>
+    </div>
+    <div class="footer"><span>DSO 576 · Project Data Cleaning</span><span>Codex check and reproducibility</span></div>
+  </section>
+
+  <section class="page new-page">
+    <div class="section-head"><div><div class="section-no">08 · LIMITATIONS</div><h2>What the cleaned data cannot establish</h2></div><div class="small">Documented, unresolved constraints</div></div>
+
+    <div class="grid-2">
+      <div class="card"><h3>No occupation-to-task link</h3><p>The task table has no occupation code or task ID. It cannot be joined safely to the occupation table, and it cannot show which listed tasks belong to a specific career.</p></div>
+      <div class="card"><h3>Duplicate identity is uncertain</h3><p>Identical visible rows may be redundant copies or distinct upstream O*NET records whose identifiers were omitted. The clean file supports distinct-description analysis; the source supports occurrence-weighted sensitivity checks.</p></div>
+      <div class="card"><h3>Exposure is not replacement</h3><p>Observed exposure combines capability and use. It can represent automation, augmentation, or workflow change and is not a forecast that an occupation will disappear.</p></div>
+      <div class="card"><h3>Career criteria are incomplete</h3><p>Salary, employment growth, location, education costs, worker preferences, physical presence, soft skills, and regional demand are absent. Career recommendations require auxiliary sources.</p></div>
+      <div class="card"><h3>Platform and time scope</h3><p>The measures reflect the release’s methodology and observed Claude usage. Adoption patterns, models, and deployment contexts may change, so later releases may not be directly comparable without version controls.</p></div>
+      <div class="card"><h3>Similar text is unresolved</h3><p>The rules do not collapse paraphrases, spelling variants, or capitalization differences. Doing so would require an authoritative task identifier or a documented semantic-matching method.</p></div>
+    </div>
+
+    <div class="section-head" style="margin-top:.9rem"><div><div class="section-no">09 · FILE INDEX</div><h2>Evidence map</h2></div></div>
+    <table>
+      <thead><tr><th>File</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">clean_data.py · cleaning_notebook.ipynb · requirements.txt</td><td>Cleaning script, restartable review notebook, and standard-library dependency statement.</td></tr>
+        <tr><td class="mono">CLEANING_README.md</td><td>Source/version, rules, run instructions, output list, and limitations.</td></tr>
+        <tr><td class="mono">cleaned/*_clean.csv</td><td>Full cleaned job and task tables.</td></tr>
+        <tr><td class="mono">cleaned/*_sample.csv</td><td>Two 25-row samples, including difficult cases.</td></tr>
+        <tr><td class="mono">cleaned/cleaning_audit.csv</td><td>Six row-level duplicate removals with source record numbers.</td></tr>
+        <tr><td class="mono">cleaned/validation.json</td><td>Counts, missingness, duplicate evidence, ranges, totals, means, and hashes.</td></tr>
+        <tr><td class="mono">cleaned/record_checks.json</td><td>Five original/expected/actual comparisons and pass results.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card soft keep" style="margin-top:.75rem">
+      <h3>References</h3>
+      <p class="small">Anthropic. “Labor market impacts of AI: A new measure and early evidence.” March 5, 2026. <a href="https://www.anthropic.com/research/labor-market-impacts">anthropic.com/research/labor-market-impacts</a></p>
+      <p class="small">Anthropic Economic Index, <span class="mono">labor_market_impacts</span> data directory. <a href="https://huggingface.co/datasets/Anthropic/EconomicIndex/tree/main/labor_market_impacts">huggingface.co/datasets/Anthropic/EconomicIndex</a></p>
+      <p class="small">PyForce project vision and candidate assessment: <span class="mono">project-start.md</span>.</p>
+    </div>
+    <div class="status-note" style="margin-top:.72rem">
+      <strong>Before final submission:</strong> commit and push the cleaning deliverables to branch <span class="mono">Allen</span>, then replace the pending commit note on the cover with the submitted commit ID and regenerate this PDF.
+    </div>
+    <div class="footer"><span>DSO 576 · Project Data Cleaning</span><span>Limitations and evidence map</span></div>
+  </section>
+
+</body>
+</html>

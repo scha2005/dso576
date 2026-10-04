@@ -1,0 +1,76 @@
+{
+  "job_exposure": {
+    "source_sha256": "4f0a3adf5feeb2ec5f5d02ab18cc5e851a2a4b8470bde84c0c9335017be12d68",
+    "rows_before": 756,
+    "rows_after": 756,
+    "removed_rows": 0,
+    "exact_duplicate_excess_before": 0,
+    "repeated_key_groups_before": 0,
+    "repeated_key_excess_before": 0,
+    "missing_before": {
+      "occ_code": 0,
+      "title": 0,
+      "observed_exposure": 0
+    },
+    "missing_after": {
+      "occ_code": 0,
+      "title": 0,
+      "observed_exposure": 0
+    },
+    "failed_numeric_conversions": 0,
+    "out_of_range_scores": 0,
+    "metrics_before": {
+      "count": 756,
+      "sum": "58.1944",
+      "mean": "0.07697671957671957671957671958",
+      "min": "0.0",
+      "max": "0.7451",
+      "zeros": 411
+    },
+    "metrics_after": {
+      "count": 756,
+      "sum": "58.1944",
+      "mean": "0.07697671957671957671957671958",
+      "min": "0.0",
+      "max": "0.7451",
+      "zeros": 411
+    },
+    "score_sum_removed": "0.0000"
+  },
+  "task_penetration": {
+    "source_sha256": "85bee872db1d55d3e9a7f4e89da5ae4a5d59aa8ec875d728fbf4b7d820984616",
+    "rows_before": 17998,
+    "rows_after": 17992,
+    "removed_rows": 6,
+    "exact_duplicate_excess_before": 6,
+    "repeated_key_groups_before": 2,
+    "repeated_key_excess_before": 6,
+    "missing_before": {
+      "task": 0,
+      "penetration": 0
+    },
+    "missing_after": {
+      "task": 0,
+      "penetration": 0
+    },
+    "failed_numeric_conversions": 0,
+    "out_of_range_scores": 0,
+    "metrics_before": {
+      "count": 17998,
+      "sum": "1201.2546",
+      "mean": "0.06674378264251583509278808757",
+      "min": "0.0",
+      "max": "1.0",
+      "zeros": 16644
+    },
+    "metrics_after": {
+      "count": 17992,
+      "sum": "1196.8968",
+      "mean": "0.06652383281458425967096487328",
+      "min": "0.0",
+      "max": "1.0",
+      "zeros": 16644
+    },
+    "score_sum_removed": "4.3578"
+  }
+}

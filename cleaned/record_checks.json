@@ -1,0 +1,118 @@
+[
+  {
+    "dataset": "job_exposure",
+    "original": {
+      "occ_code": "11-1031",
+      "title": "Legislators",
+      "observed_exposure": "0.0"
+    },
+    "original_count": 1,
+    "expected": [
+      {
+        "occ_code": "11-1031",
+        "title": "Legislators",
+        "observed_exposure": "0.0"
+      }
+    ],
+    "actual": [
+      {
+        "occ_code": "11-1031",
+        "title": "Legislators",
+        "observed_exposure": "0.0"
+      }
+    ],
+    "matches": true,
+    "reason": "Retain score and case; retain one occurrence of an exact row."
+  },
+  {
+    "dataset": "job_exposure",
+    "original": {
+      "occ_code": "15-1251",
+      "title": "Computer Programmers",
+      "observed_exposure": "0.7451"
+    },
+    "original_count": 1,
+    "expected": [
+      {
+        "occ_code": "15-1251",
+        "title": "Computer Programmers",
+        "observed_exposure": "0.7451"
+      }
+    ],
+    "actual": [
+      {
+        "occ_code": "15-1251",
+        "title": "Computer Programmers",
+        "observed_exposure": "0.7451"
+      }
+    ],
+    "matches": true,
+    "reason": "Retain score and case; retain one occurrence of an exact row."
+  },
+  {
+    "dataset": "task_penetration",
+    "original": {
+      "task": "Advise customers on use and care of merchandise.",
+      "penetration": "1.0"
+    },
+    "original_count": 1,
+    "expected": [
+      {
+        "task": "Advise customers on use and care of merchandise.",
+        "penetration": "1.0"
+      }
+    ],
+    "actual": [
+      {
+        "task": "Advise customers on use and care of merchandise.",
+        "penetration": "1.0"
+      }
+    ],
+    "matches": true,
+    "reason": "Retain score and case; retain one occurrence of an exact row."
+  },
+  {
+    "dataset": "task_penetration",
+    "original": {
+      "task": "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet Web pages.",
+      "penetration": "0.7263"
+    },
+    "original_count": 4,
+    "expected": [
+      {
+        "task": "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet Web pages.",
+        "penetration": "0.7263"
+      }
+    ],
+    "actual": [
+      {
+        "task": "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet Web pages.",
+        "penetration": "0.7263"
+      }
+    ],
+    "matches": true,
+    "reason": "Retain score and case; retain one occurrence of an exact row."
+  },
+  {
+    "dataset": "task_penetration",
+    "original": {
+      "task": "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet web pages.",
+      "penetration": "0.7263"
+    },
+    "original_count": 4,
+    "expected": [
+      {
+        "task": "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet web pages.",
+        "penetration": "0.7263"
+      }
+    ],
+    "actual": [
+      {
+        "task": "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet web pages.",
+        "penetration": "0.7263"
+      }
+    ],
+    "matches": true,
+    "reason": "Retain score and case; retain one occurrence of an exact row."
+  }
+]
