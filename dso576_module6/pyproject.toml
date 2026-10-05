@@ -1,0 +1,6 @@
+[project]
+name = "dso576-module6-cleaning"
+version = "0.1.0"
+description = "Reproducible data validation and cleaning outputs for DSO 576 Module 6"
+requires-python = ">=3.9"
+dependencies = []

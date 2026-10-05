@@ -1,0 +1,207 @@
+{
+  "source_files": {
+    "job_exposure": "job_exposure.csv",
+    "task_penetration": "task_penetration.csv"
+  },
+  "source_version_or_download_date": "Unknown; no source/version/date metadata was present in the project materials.",
+  "datasets": {
+    "job_exposure": {
+      "columns": [
+        "occ_code",
+        "title",
+        "observed_exposure"
+      ],
+      "inferred_types": {
+        "occ_code": "text",
+        "title": "text",
+        "observed_exposure": "numeric (validated as Decimal)"
+      },
+      "candidate_key": "occ_code",
+      "rows_before": 756,
+      "rows_after": 756,
+      "missing_before": {
+        "occ_code": 0,
+        "title": 0,
+        "observed_exposure": 0
+      },
+      "missing_after": {
+        "occ_code": 0,
+        "title": 0,
+        "observed_exposure": 0
+      },
+      "exact_duplicates_before": {
+        "groups": 0,
+        "extra_rows": 0
+      },
+      "exact_duplicates_after": {
+        "groups": 0,
+        "extra_rows": 0
+      },
+      "candidate_key_repeat_groups": 0,
+      "candidate_key_extra_rows": 0,
+      "numeric_type_validation": {
+        "field": "observed_exposure",
+        "conversion_failures_before": 0,
+        "conversion_failures_after": 0,
+        "all_values_numeric": true
+      },
+      "numeric_before": {
+        "count": 756,
+        "min": "0.0",
+        "max": "0.7451",
+        "mean": 0.07697671957671957,
+        "median": 0.0,
+        "sum": "58.1944",
+        "zero_count": 411,
+        "positive_count": 345
+      },
+      "numeric_after": {
+        "count": 756,
+        "min": "0.0",
+        "max": "0.7451",
+        "mean": 0.07697671957671957,
+        "median": 0.0,
+        "sum": "58.1944",
+        "zero_count": 411,
+        "positive_count": 345
+      },
+      "text_format_before": {
+        "occ_code": {
+          "leading_or_trailing_whitespace_rows": 0,
+          "blank_rows": 0
+        },
+        "title": {
+          "leading_or_trailing_whitespace_rows": 0,
+          "blank_rows": 0
+        }
+      },
+      "repeat_task_groups": 0,
+      "casefolded_repeat_task_families": {},
+      "exact_duplicate_pairs": [],
+      "unresolved_repeat_task_counts": {}
+    },
+    "task_penetration": {
+      "columns": [
+        "task",
+        "penetration"
+      ],
+      "inferred_types": {
+        "task": "text",
+        "penetration": "numeric (validated as Decimal)"
+      },
+      "candidate_key": "task",
+      "rows_before": 17998,
+      "rows_after": 17998,
+      "missing_before": {
+        "task": 0,
+        "penetration": 0
+      },
+      "missing_after": {
+        "task": 0,
+        "penetration": 0
+      },
+      "exact_duplicates_before": {
+        "groups": 2,
+        "extra_rows": 6
+      },
+      "exact_duplicates_after": {
+        "groups": 2,
+        "extra_rows": 6
+      },
+      "candidate_key_repeat_groups": 2,
+      "candidate_key_extra_rows": 6,
+      "numeric_type_validation": {
+        "field": "penetration",
+        "conversion_failures_before": 0,
+        "conversion_failures_after": 0,
+        "all_values_numeric": true
+      },
+      "numeric_before": {
+        "count": 17998,
+        "min": "0.0",
+        "max": "1.0",
+        "mean": 0.06674378264251583,
+        "median": 0.0,
+        "sum": "1201.2546",
+        "zero_count": 16644,
+        "positive_count": 1354
+      },
+      "numeric_after": {
+        "count": 17998,
+        "min": "0.0",
+        "max": "1.0",
+        "mean": 0.06674378264251583,
+        "median": 0.0,
+        "sum": "1201.2546",
+        "zero_count": 16644,
+        "positive_count": 1354
+      },
+      "text_format_before": {
+        "task": {
+          "leading_or_trailing_whitespace_rows": 0,
+          "blank_rows": 0
+        }
+      },
+      "repeat_task_groups": 2,
+      "casefolded_repeat_task_families": {
+        "write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet web pages.": {
+          "count": 8,
+          "distinct_exact_texts": [
+            "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet Web pages.",
+            "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet web pages."
+          ],
+          "penetration_frequencies": {
+            "0.7263": 8
+          },
+          "row_indices": [
+            17890,
+            17891,
+            17892,
+            17893,
+            17894,
+            17895,
+            17896,
+            17897
+          ]
+        }
+      },
+      "exact_duplicate_pairs": [
+        {
+          "task": "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet Web pages.",
+          "penetration": "0.7263",
+          "count": 4,
+          "row_indices": [
+            17890,
+            17891,
+            17892,
+            17893
+          ]
+        },
+        {
+          "task": "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet web pages.",
+          "penetration": "0.7263",
+          "count": 4,
+          "row_indices": [
+            17894,
+            17895,
+            17896,
+            17897
+          ]
+        }
+      ],
+      "unresolved_repeat_task_counts": {
+        "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet Web pages.": 4,
+        "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet web pages.": 4
+      }
+    }
+  },
+  "relationship": {
+    "merge_performed": false,
+    "shared_defensible_key": null,
+    "basis": "No shared identifier or documented crosswalk appears in the two source files."
+  },
+  "record_checks": {
+    "count": 5,
+    "all_match": true
+  }
+}

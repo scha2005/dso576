@@ -1,0 +1,11 @@
+{
+  "method": "Reran this script in a temporary output directory from the unchanged original CSVs; compared SHA-256 hashes.",
+  "files_compared": {
+    "job_exposure_cleaned.csv": true,
+    "task_penetration_cleaned.csv": true,
+    "cleaned_data_sample.csv": true,
+    "record_checks.csv": true,
+    "validation_audit.json": true
+  },
+  "passed": true
+}

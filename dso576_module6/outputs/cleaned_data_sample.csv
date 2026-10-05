@@ -1,0 +1,16 @@
+dataset,original_row_index,occ_code,title,observed_exposure,task,penetration
+job_exposure,1,11-1011,Chief Executives,0.0333,,
+job_exposure,3,11-1031,Legislators,0.0,,
+job_exposure,74,15-1251,Computer Programmers,0.7451,,
+job_exposure,756,53-7121,"Tank Car, Truck, and Ship Loaders",0.0,,
+task_penetration,1,,,,"Accept and check containers of mail from large volume mailers, couriers, and contractors.",0.0
+task_penetration,1,,,,"Accept and check containers of mail from large volume mailers, couriers, and contractors.",0.0
+task_penetration,342,,,,Advise customers on use and care of merchandise.,1.0
+task_penetration,17890,,,,"Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet Web pages.",0.7263
+task_penetration,17891,,,,"Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet Web pages.",0.7263
+task_penetration,17892,,,,"Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet Web pages.",0.7263
+task_penetration,17893,,,,"Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet Web pages.",0.7263
+task_penetration,17894,,,,"Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet web pages.",0.7263
+task_penetration,17895,,,,"Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet web pages.",0.7263
+task_penetration,17896,,,,"Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet web pages.",0.7263
+task_penetration,17897,,,,"Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet web pages.",0.7263
