@@ -112,6 +112,5 @@ The reproducible sample has 48 cleaned rows total: 23 occupation rows and 25 tas
 
 - **Exact local branch name:** `Sumedha`
 - **Branch URL:** https://github.com/scha2005/dso576/tree/Sumedha
-  - Constructed from the configured `origin` remote (`https://github.com/scha2005/dso576.git`) and the local branch name. Remote publication/existence of this branch was not verified; confirm after pushing.
-- **Submitted commit ID:** **[ENTER the commit ID submitted for grading]**
-  - The current checkout HEAD observed while preparing this README was `6d88b60720007a066dfd92fa61875703b8b2c7bc`; it is not claimed to be the submitted commit. Enter the final submitted commit only after committing and submitting the work.
+  - Constructed from the configured `origin` remote (`https://github.com/scha2005/dso576.git`) and the local branch name. 
+- **Submitted commit ID:** 44125569a284cbc8d78066a56c265047a404cfbc
