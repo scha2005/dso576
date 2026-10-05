@@ -1,0 +1,6 @@
+dataset,column,type_after,missing_before,missing_after,text_changes,failed_conversions
+job_exposure,occ_code,string,0,0,0,0
+job_exposure,title,string,0,0,0,0
+job_exposure,observed_exposure,float64,0,0,0,0
+task_penetration,task,string,0,0,0,0
+task_penetration,penetration,float64,0,0,0,0

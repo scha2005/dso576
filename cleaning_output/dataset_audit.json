@@ -1,0 +1,44 @@
+{
+  "job_exposure": {
+    "rows_before": 756,
+    "rows_after": 756,
+    "removed_rows": 0,
+    "exact_duplicate_excess_before": 0,
+    "exact_duplicate_excess_after": 0,
+    "repeated_key_groups_before": 0,
+    "rows_in_repeated_key_groups_before": 0,
+    "repeated_key_excess_before": 0,
+    "repeated_key_excess_after": 0,
+    "conflicting_keys": 0,
+    "invalid_rates": 0,
+    "sum_before": "58.1944",
+    "sum_removed": "0",
+    "sum_after": "58.1944",
+    "source_hash_unchanged": true,
+    "all_retained_rates_match_raw": true
+  },
+  "task_penetration": {
+    "rows_before": 17998,
+    "rows_after": 17992,
+    "removed_rows": 6,
+    "exact_duplicate_excess_before": 6,
+    "exact_duplicate_excess_after": 0,
+    "repeated_key_groups_before": 2,
+    "rows_in_repeated_key_groups_before": 8,
+    "repeated_key_excess_before": 6,
+    "repeated_key_excess_after": 0,
+    "conflicting_keys": 0,
+    "invalid_rates": 0,
+    "sum_before": "1201.2546",
+    "sum_removed": "4.3578",
+    "sum_after": "1196.8968",
+    "source_hash_unchanged": true,
+    "all_retained_rates_match_raw": true
+  },
+  "casefold_sensitivity": {
+    "primary_rows": 17992,
+    "primary_mean": 0.06652383281458425,
+    "sensitivity_rows": 17991,
+    "sensitivity_mean": 0.06648716024679005
+  }
+}

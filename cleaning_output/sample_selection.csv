@@ -1,0 +1,51 @@
+dataset,source_record,reason
+job_exposure,1,source-order coverage
+job_exposure,2,source-order coverage
+job_exposure,3,C1 retained representative; minimum
+job_exposure,4,source-order coverage
+job_exposure,5,source-order coverage
+job_exposure,6,source-order coverage
+job_exposure,7,source-order coverage
+job_exposure,8,source-order coverage
+job_exposure,9,source-order coverage
+job_exposure,10,source-order coverage
+job_exposure,11,source-order coverage
+job_exposure,12,source-order coverage
+job_exposure,13,source-order coverage
+job_exposure,14,source-order coverage
+job_exposure,15,source-order coverage
+job_exposure,16,source-order coverage
+job_exposure,17,source-order coverage
+job_exposure,18,source-order coverage
+job_exposure,19,source-order coverage
+job_exposure,20,source-order coverage
+job_exposure,21,source-order coverage
+job_exposure,22,source-order coverage
+job_exposure,23,source-order coverage
+job_exposure,24,source-order coverage
+job_exposure,74,C2 retained representative; maximum
+task_penetration,1,minimum
+task_penetration,2,source-order coverage
+task_penetration,3,source-order coverage
+task_penetration,4,source-order coverage
+task_penetration,5,source-order coverage
+task_penetration,6,source-order coverage
+task_penetration,7,source-order coverage
+task_penetration,8,source-order coverage
+task_penetration,9,source-order coverage
+task_penetration,10,source-order coverage
+task_penetration,11,source-order coverage
+task_penetration,12,source-order coverage
+task_penetration,13,source-order coverage
+task_penetration,14,source-order coverage
+task_penetration,15,source-order coverage
+task_penetration,16,source-order coverage
+task_penetration,17,source-order coverage
+task_penetration,18,source-order coverage
+task_penetration,19,source-order coverage
+task_penetration,20,source-order coverage
+task_penetration,21,source-order coverage
+task_penetration,22,source-order coverage
+task_penetration,342,C3 retained representative; maximum
+task_penetration,17890,C4 retained representative; case-only variant
+task_penetration,17894,C5 retained representative; case-only variant

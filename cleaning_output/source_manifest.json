@@ -1,0 +1,16 @@
+[
+  {
+    "file": "job_exposure(1).csv",
+    "sha256": "4f0a3adf5feeb2ec5f5d02ab18cc5e851a2a4b8470bde84c0c9335017be12d68",
+    "source": "User-supplied CSV attachment",
+    "publisher_version": "Not provided",
+    "original_download_date": "Not provided"
+  },
+  {
+    "file": "task_penetration(1).csv",
+    "sha256": "85bee872db1d55d3e9a7f4e89da5ae4a5d59aa8ec875d728fbf4b7d820984616",
+    "source": "User-supplied CSV attachment",
+    "publisher_version": "Not provided",
+    "original_download_date": "Not provided"
+  }
+]

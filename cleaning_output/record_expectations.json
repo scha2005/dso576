@@ -1,0 +1,47 @@
+[
+  {
+    "case": "C1",
+    "dataset": "job_exposure",
+    "source_record": 3,
+    "expected_action": "keep",
+    "expected_rate": "0.0000",
+    "expected_key": "11-1031",
+    "reason": "Legislators has a real zero; do not replace it with missing."
+  },
+  {
+    "case": "C2",
+    "dataset": "job_exposure",
+    "source_record": 74,
+    "expected_action": "keep",
+    "expected_rate": "0.7451",
+    "expected_key": "15-1251",
+    "reason": "Computer Programmers has a high but valid observed exposure."
+  },
+  {
+    "case": "C3",
+    "dataset": "task_penetration",
+    "source_record": 342,
+    "expected_action": "keep",
+    "expected_rate": "1.0000",
+    "expected_key": "Advise customers on use and care of merchandise.",
+    "reason": "One is a valid boundary under the provisional proportion interpretation."
+  },
+  {
+    "case": "C4",
+    "dataset": "task_penetration",
+    "source_record": 17891,
+    "expected_action": "remove_exact_duplicate",
+    "expected_rate": "0.7263",
+    "expected_retained_record": 17890,
+    "reason": "This exact duplicate must be removed while its first occurrence remains."
+  },
+  {
+    "case": "C5",
+    "dataset": "task_penetration",
+    "source_record": 17894,
+    "expected_action": "keep",
+    "expected_rate": "0.7263",
+    "expected_case_flag": true,
+    "reason": "Keep lowercase web and flag its case-only difference from Web."
+  }
+]

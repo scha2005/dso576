@@ -1,0 +1,26 @@
+occ_code,title,observed_exposure,source_record
+11-1011,Chief Executives,0.0333,1
+11-1021,General and Operations Managers,0.1378,2
+11-1031,Legislators,0.0,3
+11-2011,Advertising and Promotions Managers,0.1731,4
+11-2021,Marketing Managers,0.3195,5
+11-2022,Sales Managers,0.0433,6
+11-2032,Public Relations Managers,0.2315,7
+11-3012,Administrative Services Managers,0.0,8
+11-3013,Facilities Managers,0.1345,9
+11-3021,Computer and Information Systems Managers,0.1559,10
+11-3031,Financial Managers,0.3907,11
+11-3051,Industrial Production Managers,0.0132,12
+11-3061,Purchasing Managers,0.2004,13
+11-3071,"Transportation, Storage, and Distribution Managers",0.0956,14
+11-3111,Compensation and Benefits Managers,0.0,15
+11-3121,Human Resources Managers,0.0,16
+11-3131,Training and Development Managers,0.3777,17
+11-9013,"Farmers, Ranchers, and Other Agricultural Managers",0.0,18
+11-9021,Construction Managers,0.1186,19
+11-9031,"Education and Childcare Administrators, Preschool and Daycare",0.0395,20
+11-9032,"Education Administrators, Kindergarten through Secondary",0.0525,21
+11-9033,"Education Administrators, Postsecondary",0.0644,22
+11-9041,Architectural and Engineering Managers,0.0306,23
+11-9051,Food Service Managers,0.0,24
+15-1251,Computer Programmers,0.7451,74

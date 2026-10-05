@@ -1,0 +1,99 @@
+[
+  {
+    "case": "C1",
+    "dataset": "job_exposure",
+    "source_record": 3,
+    "expected_action": "keep",
+    "expected_rate": "0.0000",
+    "expected_key": "11-1031",
+    "reason": "Legislators has a real zero; do not replace it with missing.",
+    "original": {
+      "occ_code": "11-1031",
+      "title": "Legislators",
+      "observed_exposure": "0.0"
+    },
+    "actual_action": "keep",
+    "actual_rate": 0.0,
+    "actual_key": "11-1031",
+    "actual_retained_record": 3,
+    "actual_case_flag": false,
+    "pass": true
+  },
+  {
+    "case": "C2",
+    "dataset": "job_exposure",
+    "source_record": 74,
+    "expected_action": "keep",
+    "expected_rate": "0.7451",
+    "expected_key": "15-1251",
+    "reason": "Computer Programmers has a high but valid observed exposure.",
+    "original": {
+      "occ_code": "15-1251",
+      "title": "Computer Programmers",
+      "observed_exposure": "0.7451"
+    },
+    "actual_action": "keep",
+    "actual_rate": 0.7451,
+    "actual_key": "15-1251",
+    "actual_retained_record": 74,
+    "actual_case_flag": false,
+    "pass": true
+  },
+  {
+    "case": "C3",
+    "dataset": "task_penetration",
+    "source_record": 342,
+    "expected_action": "keep",
+    "expected_rate": "1.0000",
+    "expected_key": "Advise customers on use and care of merchandise.",
+    "reason": "One is a valid boundary under the provisional proportion interpretation.",
+    "original": {
+      "task": "Advise customers on use and care of merchandise.",
+      "penetration": "1.0"
+    },
+    "actual_action": "keep",
+    "actual_rate": 1.0,
+    "actual_key": "Advise customers on use and care of merchandise.",
+    "actual_retained_record": 342,
+    "actual_case_flag": false,
+    "pass": true
+  },
+  {
+    "case": "C4",
+    "dataset": "task_penetration",
+    "source_record": 17891,
+    "expected_action": "remove_exact_duplicate",
+    "expected_rate": "0.7263",
+    "expected_retained_record": 17890,
+    "reason": "This exact duplicate must be removed while its first occurrence remains.",
+    "original": {
+      "task": "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet Web pages.",
+      "penetration": "0.7263"
+    },
+    "actual_action": "remove_exact_duplicate",
+    "actual_rate": 0.7263,
+    "actual_key": "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet Web pages.",
+    "actual_retained_record": 17890,
+    "actual_case_flag": false,
+    "pass": true
+  },
+  {
+    "case": "C5",
+    "dataset": "task_penetration",
+    "source_record": 17894,
+    "expected_action": "keep",
+    "expected_rate": "0.7263",
+    "expected_case_flag": true,
+    "reason": "Keep lowercase web and flag its case-only difference from Web.",
+    "original": {
+      "task": "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet web pages.",
+      "penetration": "0.7263"
+    },
+    "actual_action": "keep",
+    "actual_rate": 0.7263,
+    "actual_key": "Write interesting and effective press releases, prepare information for media kits, and develop and maintain company internet or intranet web pages.",
+    "actual_retained_record": 17894,
+    "actual_case_flag": true,
+    "pass": true
+  }
+]

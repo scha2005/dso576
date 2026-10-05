@@ -1,0 +1,37 @@
+[
+  {
+    "rule": "Preserve source bytes and keep identifiers as strings.",
+    "reason": "Keep provenance and identifier formatting.",
+    "check": "Compare SHA-256 before/after; check occupation-code syntax."
+  },
+  {
+    "rule": "Trim and collapse whitespace; preserve case and punctuation.",
+    "reason": "Avoid erasing meaningful label differences.",
+    "check": "Log every changed text cell and flag case-only task variants."
+  },
+  {
+    "rule": "Convert rate fields explicitly; retain blanks as missing and real zeros as zero.",
+    "reason": "Missing observations are not measured zeros.",
+    "check": "Count missing values and failed conversions; reject invalid or infinite rates."
+  },
+  {
+    "rule": "Remove exact duplicate business rows, retaining the first source record.",
+    "reason": "The chosen analytical unit is a distinct task description, not source-row frequency.",
+    "check": "Independently count duplicates with csv/Counter; reconcile removed rows and rates."
+  },
+  {
+    "rule": "Keep case-only task variants; stop on conflicting repeated keys.",
+    "reason": "There are no authoritative task IDs to resolve uncertain identity.",
+    "check": "Write case_variant_review.csv and verify key uniqueness after exact deduplication."
+  },
+  {
+    "rule": "Require rates in [0,1]; retain valid boundaries and high observations.",
+    "reason": "An unusual value is not necessarily an error; bounds are provisional without a codebook.",
+    "check": "Check all numeric values and occupation codes; no date columns exist."
+  },
+  {
+    "rule": "Do not merge the two tables. Use unweighted, nonmissing-rate denominators.",
+    "reason": "No shared occupation-task key or population weights are supplied.",
+    "check": "Report metric denominators and reconcile occupation-group counts."
+  }
+]
