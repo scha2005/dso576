@@ -2,7 +2,7 @@
 
 ## Project and source information
 
-The project reads the original files from `dso576_module6/data/raw/job_exposure.csv` and `dso576_module6/data/raw/task_penetration.csv` (relative to the Git repository root). Both are copied into this project unchanged. No source organization, source URL, release/version, download date, data dictionary, or provenance note was supplied. Those details are unknown and are not inferred. See `submission_checklist.md` for itemized evidence.
+The project reads the original files from `data_cleaned/data/raw/job_exposure.csv` and `data_cleaned/data/raw/task_penetration.csv` (relative to the Git repository root). Both are copied into this project unchanged. No source organization, source URL, release/version, download date, data dictionary, or provenance note was supplied. Those details are unknown and are not inferred. See `submission_checklist.md` for itemized evidence.
 
 Branch name, branch URL, and commit ID are not recorded in the supplied project materials.
 
@@ -18,18 +18,18 @@ The datasets have no shared identifier or documented crosswalk. The workflow per
 The script requires Python 3.9 or later and uses only the standard library. `pyproject.toml` declares `requires-python = ">=3.9"` and `dependencies = []`; no package installation is needed. From the repository root, run:
 
 ```powershell
-python .\dso576_module6\clean_data.py
+python .\data_cleaned\clean_data.py
 ```
 
-The script also works when run from any directory because it resolves its inputs relative to `clean_data.py`; generated files go to `dso576_module6/outputs/` by default. Alternatively, from this project directory run `python .\clean_data.py`.
+The script also works when run from any directory because it resolves its inputs relative to `clean_data.py`; generated files go to `data_cleaned/outputs/` by default. Alternatively, from this project directory run `python .\clean_data.py`.
 
 Verified in this environment from the repository root with the installed Python 3.13 executable:
 
 ```powershell
-& 'C:\Users\lutao\AppData\Local\Programs\Python\Python313\python.exe' .\dso576_module6\clean_data.py
+& 'C:\Users\lutao\AppData\Local\Programs\Python\Python313\python.exe' .\data_cleaned\clean_data.py
 ```
 
-The shorter `python .\dso576_module6\clean_data.py` command was also attempted, but this machine's `python` resolves to an inaccessible WindowsApps alias. On another machine, use its configured interpreter command, for example `python .\dso576_module6\clean_data.py` when Python is on PATH, or `py -3 .\dso576_module6\clean_data.py` when the Python launcher is installed. The notebook invokes the script through the active kernel's `sys.executable` and expects the notebook to be run from the repository root.
+The shorter `python .\data_cleaned\clean_data.py` command was also attempted, but this machine's `python` resolves to an inaccessible WindowsApps alias. On another machine, use its configured interpreter command, for example `python .\data_cleaned\clean_data.py` when Python is on PATH, or `py -3 .\data_cleaned\clean_data.py` when the Python launcher is installed. The notebook invokes the script through the active kernel's `sys.executable` and expects the notebook to be run from the repository root.
 
 The successful script run recreated files in `outputs/`. It validates numeric fields as finite `Decimal` values, writes canonical numeric values to separate outputs, preserves source text and row order, and reruns itself into a temporary directory to compare SHA-256 hashes of deterministic outputs.
 
