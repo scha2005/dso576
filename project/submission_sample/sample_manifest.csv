@@ -1,0 +1,49 @@
+sample_file,source_cleaned_csv_line,selection_category,selection_reason
+job_exposure_sample.csv,2,manual verification / identifier,Preselected text-preservation check: retain occ_code 11-1011 exactly as text.
+job_exposure_sample.csv,3,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,4,manual verification / zero negative control,Preselected missingness negative control: complete record with observed_exposure 0.0; no source row is missing.
+job_exposure_sample.csv,5,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,6,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,7,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,8,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,9,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,10,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,11,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,12,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,13,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,14,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,15,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,16,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,17,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,18,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,19,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,20,ordinary comparison,Ordinary early-file occupation for comparison.
+job_exposure_sample.csv,75,unusual valid value,High observed_exposure value (0.7451); retained as a valid observed value.
+job_exposure_sample.csv,300,ordinary comparison,Middle-file occupation for comparison.
+job_exposure_sample.csv,500,ordinary comparison,Middle-file occupation for comparison.
+job_exposure_sample.csv,700,ordinary comparison,Late-file occupation for comparison.
+task_penetration_sample.csv,2,manual verification / merge-key probe,Preselected merge probe: task record has no occupation code or title; do not assign it to a job.
+task_penetration_sample.csv,3,ordinary comparison,Ordinary early-file task for comparison.
+task_penetration_sample.csv,4,ordinary comparison,Ordinary early-file task for comparison.
+task_penetration_sample.csv,5,ordinary comparison,Ordinary early-file task for comparison.
+task_penetration_sample.csv,6,ordinary comparison,Ordinary early-file task for comparison.
+task_penetration_sample.csv,7,ordinary comparison,Ordinary early-file task for comparison.
+task_penetration_sample.csv,8,ordinary comparison,Ordinary early-file task for comparison.
+task_penetration_sample.csv,9,ordinary comparison,Ordinary early-file task for comparison.
+task_penetration_sample.csv,10,ordinary comparison,Ordinary early-file task for comparison.
+task_penetration_sample.csv,100,ordinary comparison,Early-file task outside the opening block for comparison.
+task_penetration_sample.csv,343,manual verification / upper boundary,Preselected upper-bound record: penetration is 1.0 and is retained unchanged.
+task_penetration_sample.csv,500,ordinary comparison,Early-file task outside the opening block for comparison.
+task_penetration_sample.csv,1000,ordinary comparison,Task from a different file section for comparison.
+task_penetration_sample.csv,5000,ordinary comparison,Task from a different file section for comparison.
+task_penetration_sample.csv,9000,ordinary comparison,Task from a different file section for comparison.
+task_penetration_sample.csv,12000,ordinary comparison,Task from a different file section for comparison.
+task_penetration_sample.csv,17000,ordinary comparison,Late-file task for comparison.
+task_penetration_sample.csv,17891,manual verification / exact duplicate group,First instance of an exact repeated task row; all occurrences are retained.
+task_penetration_sample.csv,17892,exact duplicate group,Second identical occurrence; demonstrates duplicate retention.
+task_penetration_sample.csv,17893,exact duplicate group,Third identical occurrence; demonstrates duplicate retention.
+task_penetration_sample.csv,17894,exact duplicate group,Fourth identical occurrence; demonstrates duplicate retention.
+task_penetration_sample.csv,17895,capitalization variant / repeated task,First occurrence of case-only Web/web task-text variant; text is preserved.
+task_penetration_sample.csv,17896,capitalization variant / repeated task,Repeated occurrence of the case-only task-text variant; text is preserved.
+task_penetration_sample.csv,17897,capitalization variant / repeated task,Repeated occurrence of the case-only task-text variant; text is preserved.
+task_penetration_sample.csv,17898,capitalization variant / repeated task,Repeated occurrence of the case-only task-text variant; text is preserved.
