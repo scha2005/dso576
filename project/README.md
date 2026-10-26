@@ -1,5 +1,13 @@
 # AI Workforce Exposure: Individual Data-Cleaning Submission
 
+## Run the dashboard
+
+From the project root, install the dashboard dependencies and start the Streamlit app:
+
+    python -m pip install -r requirements.txt
+    python -m streamlit run app.py
+
+The UI reads the canonical CSVs in data/processed/ and calls backend_analysis.py for validation, filters, scoring, summary metrics, charts, and occupation/task drill-downs. Dashboard metrics are calculated by the backend.
 ## Project and business question
 
 **Project vision:** Create a dashboard to assess AI workforce exposure in terms of jobs and tasks.
