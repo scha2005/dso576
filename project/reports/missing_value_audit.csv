@@ -1,0 +1,26 @@
+dataset,column,missing_count,missing_pct,reason_category,source_or_join,treatment,notes
+occupation,bls_title,1,0.132275,join did not match,BLS Table 1.2 SOC join,retain missing,No matching BLS detailed SOC record.
+occupation,positive_penetration_task_pct,86,11.375661,derived metric undefined because denominator is zero,mapped O*NET tasks,retain missing,No mapped task denominator; records remain available to unrelated calculations.
+occupation,mean_task_penetration,86,11.375661,derived metric undefined because denominator is zero,mapped O*NET tasks,retain missing,No mapped task denominator; records remain available to unrelated calculations.
+occupation,augmentation_share,446,58.994709,join did not match or supported penetration denominator is zero,normalized task-text mode join,retain missing,No zero imputation; occupation remains available to unrelated calculations.
+occupation,automation_share,446,58.994709,join did not match or supported penetration denominator is zero,normalized task-text mode join,retain missing,No zero imputation; occupation remains available to unrelated calculations.
+occupation,dominant_mode,446,58.994709,join did not match or supported penetration denominator is zero,normalized task-text mode join,retain missing,No zero imputation; occupation remains available to unrelated calculations.
+occupation,employment_base_year,1,0.132275,join did not match,BLS Table 1.2 SOC join,retain missing,No matching BLS detailed SOC record.
+occupation,employment_projection_year,1,0.132275,join did not match,BLS Table 1.2 SOC join,retain missing,No matching BLS detailed SOC record.
+occupation,employment_change_numeric,1,0.132275,join did not match,BLS Table 1.2 SOC join,retain missing,No matching BLS detailed SOC record.
+occupation,employment_growth_pct,1,0.132275,join did not match,BLS Table 1.2 SOC join,retain missing,No matching BLS detailed SOC record.
+occupation,annual_openings,1,0.132275,join did not match,BLS Table 1.2 SOC join,retain missing,No matching BLS detailed SOC record.
+occupation,median_annual_wage,4,0.529101,source value suppressed or join did not match,BLS Table 1.2,retain missing,BLS em dash is unavailable/suppressed; unmatched SOCs remain missing.
+occupation,typical_education,1,0.132275,join did not match,BLS Table 1.2 SOC join,retain missing,No matching BLS detailed SOC record.
+occupation,related_work_experience,1,0.132275,join did not match,BLS Table 1.2 SOC join,retain missing,No matching BLS detailed SOC record.
+occupation,on_the_job_training,1,0.132275,join did not match,BLS Table 1.2 SOC join,retain missing,No matching BLS detailed SOC record.
+task,augmentation_share,13221,79.22934,join did not match,normalized task-text mode join,retain missing,Mode source coverage is partial; task row retained.
+task,automation_share,13221,79.22934,join did not match,normalized task-text mode join,retain missing,Mode source coverage is partial; task row retained.
+task,dominant_mode,13221,79.22934,join did not match,normalized task-text mode join,retain missing,Mode source coverage is partial; task row retained.
+task,mode_source_task_name,13221,79.22934,join did not match,normalized task-text mode join,retain missing,Mode source coverage is partial; task row retained.
+task,feedback_loop,13221,79.22934,join did not match,normalized task-text mode join,retain missing,Mode source coverage is partial; task row retained.
+task,directive,13221,79.22934,join did not match,normalized task-text mode join,retain missing,Mode source coverage is partial; task row retained.
+task,task_iteration,13221,79.22934,join did not match,normalized task-text mode join,retain missing,Mode source coverage is partial; task row retained.
+task,validation,13221,79.22934,join did not match,normalized task-text mode join,retain missing,Mode source coverage is partial; task row retained.
+task,learning,13221,79.22934,join did not match,normalized task-text mode join,retain missing,Mode source coverage is partial; task row retained.
+task,filtered,13221,79.22934,join did not match,normalized task-text mode join,retain missing,Mode source coverage is partial; task row retained.

@@ -8,7 +8,7 @@
 
 ## Selected project area
 
-[Area]
+AI in the workforce
 
 ## Why our team is interested in it
 
@@ -16,13 +16,11 @@ As AI is reshaping the workplace, our team is interested in which roles should i
 
 ## Candidate Vision A
 
-[Role] at [organization] must decide [decision].
-
 A career seeker using a university career center must decide which career path to pursue by comparing different job opportunities, considering their long-term career prospects, and evaluating how likely each occupation is to be affected or potentially replaced by AI and automation in the future.
 
 ## Candidate Vision B
 
-[Role] at [organization] must decide [decision].
+A business strategist at a company looking to integrate AI must decide how and where to incorporate AI into workflows, which positions need to receive extra training, and how to make sure that the company receives the most ROI from AI incorporation by looking at trends of AI use in various roles.
 
 ## Side-by-side candidate assessment
 
@@ -38,9 +36,9 @@ Anthropic Economic Index, https://huggingface.co/datasets/Anthropic/EconomicInde
 
 ## Three questions we still need to resolve
 
-1. [Question]
-2. [Question]
-3. [Question]
+1. How should we systematically map O*NET occupation codes in the Anthropic dataset to normalized salary and employment growth data from the BLS (Bureau of Labor Statistics) to evaluate true career viability alongside AI exposure?
+2. How can we mathematically distinguish between AI task automation (replacing human tasks) and AI task augmentation (enhancing productivity) within the dataset to avoid misleading users into thinking high AI exposure equals job loss?
+3. What auxiliary data sources or weighting methodologies should we implement to account for regional demand variations and non-technical job requirements such as soft skills or physical presence that AI usage logs cannot capture?
 
 ## Role-file progress
 
@@ -48,12 +46,12 @@ Use one of these status labels: **Not started**, **In progress**, **Ready for te
 
 | Role file | Owner | Status |
 |---|---|---|
-| [`objectives.md`](objectives.md) | [Name or GitHub username] | [Status] |
-| [`alternatives.md`](alternatives.md) | [Name or GitHub username] | [Status] |
-| [`data-fit.md`](data-fit.md) | [Name or GitHub username] | [Status] |
-| [`auxiliary.md`](auxiliary.md) | [Name or GitHub username] | [Status] |
-| [`technical.md`](technical.md) | [Name or GitHub username] | [Status] |
-| [`objections.md`](objections.md) | [Name or GitHub username] | [Status; use Not applicable for teams with fewer than six members] |
+| [`objectives.md`](objectives.md) | Sumedha | In progress |
+| [`alternatives.md`](alternatives.md) | Jade | Not started |
+| [`data-fit.md`](data-fit.md) | Keya | In progress |
+| [`auxiliary.md`](auxiliary.md) | Allen | Not started |
+| [`technical.md`](technical.md) | Ella | Not started |
+| [`objections.md`](objections.md) | [Name or GitHub username] | Not applicable |
 
 ## Team check
 
