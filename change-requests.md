@@ -5,6 +5,7 @@
 | Auditor | Feature | Number | Specific evidence contributed |
 |---|---|---|---|
 | Ella Liu | Occupation ranking, filters, and launch path | Implementation Priority Score | Independent Python average-rank calculation for all 755 scoreable occupations; four-row hand case; search-denominator example; repository-root launch failure at commit 2d0a434287fd92cc7ccf06c443d442c2524e7ca2 |
+| Jade Yan | Occupation task drill-down | Positive-penetration task percentage | Independently count mapped and positive-penetration tasks; verify task filtering, sorting, and zero-task behavior; git rev-parse HEAD 86343342ab402922f2f30a93a39ddfed5feafa3b| 
 
 No existing change-requests.md was found in the checked team repository or Module 9 course folder. This new log uses Claims, Findings, Evidence, and Requested changes. Teammate claims elsewhere were not available, so uniqueness across teammates is unconfirmed.
 
@@ -29,3 +30,15 @@ No existing change-requests.md was found in the checked team repository or Modul
 ## Numerical finding requiring no formula change
 
 The independent pure-Python rank calculation agrees with all 755 production scores, maximum absolute difference 2.842170943040401e-14. Synthetic checks cover weights, ties, incomplete input exclusion, filtering, Top N, and invalid ranges. Preserve the documented formula unless the team deliberately changes its policy weights or comparison population. See audit_check.py for reproducible evidence.
+
+## CR-JY-01 - Clarify task coverage and missing percentages
+
+- Status: Open; communication improvement. UI behavior not tested.
+- Evidence: Accountants and Auditors has 7 positive-penetration tasks
+  out of 23 mapped tasks (30.43%). Software Developers has no mapped
+  tasks, and its percentage is missing.
+- Requested change: Show the numerator and denominator beside the
+  percentage. When no tasks are mapped, explain that task data is
+  unavailable rather than implying no AI use.
+- Acceptance: Show 7 / 23 (30.43%) for Accountants and Auditors.
+  Show N/A with a coverage explanation for Software Developers.
