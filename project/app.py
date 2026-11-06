@@ -2,6 +2,7 @@
 
 from pathlib import Path
 from typing import Any
+from html import escape
 
 import pandas as pd
 import streamlit as st
@@ -22,7 +23,25 @@ st.markdown(
       .block-container { padding-top: 1.7rem; max-width: 1500px; }
       .eyebrow { color: #2b7a78; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; font-size: .75rem; }
       .lede { color: #627585; font-size: 1rem; margin-top: -.35rem; }
-      [data-testid="stMetric"] { background: white; padding: 1rem; border: 1px solid #dce5e9; border-radius: 12px; }
+      [data-testid="stMetric"] { background: white; padding: 1rem; border: 1px solid #dce5e9; border-radius: 12px; min-width: 0; min-height: 118px; }
+      [data-testid="stMetricLabel"] { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; overflow-wrap: anywhere; }
+      [data-testid="stMetricValue"] { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; overflow-wrap: anywhere; word-break: break-word; line-height: 1.15; }
+      .occupation-chart { max-height: 680px; overflow-y: auto; overflow-x: hidden; padding: .65rem .8rem; border: 1px solid #dce5e9; border-radius: 10px; background: #fff; }
+      .occupation-chart-scale, .occupation-chart-row { display: grid; grid-template-columns: minmax(220px, 42%) minmax(0, 1fr); column-gap: 1rem; align-items: center; }
+      .occupation-chart-scale { position: sticky; top: 0; z-index: 1; padding: .25rem 0 .5rem; background: #fff; color: #627585; font-size: .75rem; }
+      .occupation-chart-scale-title { margin-bottom: .2rem; text-align: center; }
+      .occupation-chart-ticks { display: flex; justify-content: space-between; }
+      .occupation-chart-row { min-height: 38px; padding: .3rem 0; border-top: 1px solid #edf1f3; }
+      .occupation-chart-label { min-width: 0; color: #52617a; font-size: .82rem; line-height: 1.25; overflow-wrap: anywhere; }
+      .occupation-chart-track { min-width: 0; height: 18px; display: flex; overflow: hidden; border-radius: 3px; background: #eef2f5; }
+      .occupation-chart-bar { height: 100%; min-width: 0; }
+      .occupation-chart-score { display: flex; align-items: center; gap: .5rem; }
+      .occupation-chart-score .occupation-chart-track { flex: 1; }
+      .occupation-chart-value { color: #52617a; font-size: .75rem; font-variant-numeric: tabular-nums; }
+      .occupation-chart-legend { display: flex; flex-wrap: wrap; gap: .5rem 1rem; padding: .5rem 0; color: #627585; font-size: .75rem; }
+      .occupation-chart-legend span { display: inline-flex; align-items: center; gap: .35rem; }
+      .occupation-chart-swatch { width: .65rem; height: .65rem; border-radius: 2px; }
+      @media (max-width: 640px) { .occupation-chart-scale, .occupation-chart-row { grid-template-columns: minmax(130px, 40%) minmax(0, 1fr); column-gap: .6rem; } }
       div[data-testid="stDataFrame"] { border: 1px solid #dce5e9; border-radius: 10px; overflow: hidden; }
     </style>
     """,
@@ -50,6 +69,55 @@ def pct(value: Any) -> str:
 
 def occupation_label(row: pd.Series) -> str:
     return f"{row['occupation_title']} · {row['soc_code']}"
+
+
+def occupation_chart_html(rows: pd.DataFrame, kind: str) -> str:
+    """Render occupation charts with a fixed label column and wrapping labels."""
+    title = "Priority score" if kind == "priority" else "Interaction share"
+    ticks = "".join(f"<span>{tick}%</span>" for tick in (0, 25, 50, 75, 100))
+    parts = [
+        '<div class="occupation-chart" role="group">',
+        '<div class="occupation-chart-scale"><span>Occupation</span>'
+        f'<div><div class="occupation-chart-scale-title">{escape(title)}</div>'
+        f'<div class="occupation-chart-ticks">{ticks}</div></div></div>',
+    ]
+    if kind == "mode":
+        colors = {"Augmentation": "#4c9be8", "Automation": "#ff646b", "Filtered": "#f5a7ae"}
+        parts.append('<div class="occupation-chart-legend">' + "".join(
+            f'<span><i class="occupation-chart-swatch" style="background:{color}"></i>{name}</span>'
+            for name, color in colors.items()
+        ) + "</div>")
+        for _, row in rows.iterrows():
+            label = escape(str(row["occupation_title"]))
+            segments = []
+            for name, color in colors.items():
+                value = row.get(name)
+                width = max(0.0, min(100.0, float(value) * 100)) if pd.notna(value) else 0.0
+                if width:
+                    segments.append(
+                        f'<div class="occupation-chart-bar" style="width:{width:.4f}%;background:{color}" '
+                        f'title="{name}: {width:.1f}%"></div>'
+                    )
+            parts.append(
+                '<div class="occupation-chart-row">'
+                f'<div class="occupation-chart-label">{label}</div>'
+                f'<div class="occupation-chart-track" aria-label="{label}: interaction shares">{"".join(segments)}</div>'
+                '</div>'
+            )
+    else:
+        for _, row in rows.iterrows():
+            label = escape(str(row["occupation_title"]))
+            score = max(0.0, min(100.0, float(row["priority_score"])))
+            parts.append(
+                '<div class="occupation-chart-row">'
+                f'<div class="occupation-chart-label">{label}</div>'
+                '<div class="occupation-chart-score">'
+                f'<div class="occupation-chart-track"><div class="occupation-chart-bar" '
+                f'style="width:{score:.4f}%;background:#1976d2" title="{score:.1f}"></div></div>'
+                f'<span class="occupation-chart-value">{score:.1f}</span></div></div>'
+            )
+    parts.append("</div>")
+    return "".join(parts)
 
 
 def reset_filters() -> None:
@@ -130,15 +198,15 @@ kpis[3].metric("Median projected growth", f"{fmt(growth_kpi, 1)}%" if pd.notna(g
 overview_tab, detail_tab, compare_tab, notes_tab = st.tabs(["Overview", "Occupation detail", "Compare", "Definitions & sources"])
 
 with overview_tab:
-    score_col, scatter_col = st.columns([1.05, 1])
-    with score_col:
-        st.subheader("Highest implementation priorities")
-        st.caption("Scores are recalculated within the currently eligible set.")
-        scored = ranking_visual[ranking_visual["priority_score_available"]]
-        if scored.empty:
-            st.info("No complete scores match these filters. Adjust a filter or include incomplete scores.")
-        else:
-            st.bar_chart(scored.set_index("occupation_title")[["priority_score"]], horizontal=True, x_label="Priority score (0–100)")
+    st.subheader("Highest implementation priorities")
+    st.caption("Scores are recalculated within the currently eligible set.")
+    scored = ranking_visual[ranking_visual["priority_score_available"]]
+    if scored.empty:
+        st.info("No complete scores match these filters. Adjust a filter or include incomplete scores.")
+    else:
+        st.markdown(occupation_chart_html(scored, "priority"), unsafe_allow_html=True)
+
+    scatter_col = st.container()
     with scatter_col:
         st.subheader("Exposure and projected growth")
         st.caption("Point size represents base-year employment.")
@@ -157,7 +225,7 @@ with overview_tab:
     else:
         modes = supported.nlargest(20, "augmentation_share").set_index("occupation_title")[["augmentation_share", "automation_share", "filtered_share"]]
         modes.columns = ["Augmentation", "Automation", "Filtered"]
-        st.bar_chart(modes, horizontal=True, stack=True, x_label="Interaction share")
+        st.markdown(occupation_chart_html(modes.reset_index(), "mode"), unsafe_allow_html=True)
 
     st.subheader("Eligible occupation ranking")
     table = ranking[["rank", "occupation_title", "soc_code", "major_group_title", "priority_score", "observed_exposure", "employment_base_year", "employment_growth_pct", "annual_openings", "median_annual_wage", "dominant_mode"]].rename(columns={
@@ -191,11 +259,10 @@ with detail_tab:
         detail = backend.get_occupation_detail(eligible, tasks, selected_soc)
         row = detail["occupation"]
         st.markdown(f"### {row['occupation_title']}  \n{row['major_group_title']} · SOC {selected_soc}")
-        metrics = st.columns(4)
-        metrics[0].metric("Rank", fmt(row.get("rank")))
-        metrics[1].metric("Priority score", fmt(row.get("priority_score"), 1))
-        metrics[2].metric("Observed exposure", pct(row.get("observed_exposure")))
-        metrics[3].metric("Base-year employment", fmt(row.get("employment_base_year")))
+        metrics = st.columns(3)
+        metrics[0].metric("Priority score", fmt(row.get("priority_score"), 1))
+        metrics[1].metric("Observed exposure", pct(row.get("observed_exposure")))
+        metrics[2].metric("Base-year employment", fmt(row.get("employment_base_year")))
         labor_metrics = st.columns(4)
         labor_metrics[0].metric("Projected employment", fmt(row.get("employment_projection_year")))
         growth = row.get("employment_growth_pct")
